@@ -188,7 +188,7 @@ if uploaded_file is not None:
 
         with col2:
             st.title("-By Subodh Ajay Varane")
-            testImage = img.imread('S:\Downloads\mypic.png')
+            testImage = img.imread('mypic.png')
             plt.axis('off')
             plt.imshow(testImage)
             st.image(testImage)
