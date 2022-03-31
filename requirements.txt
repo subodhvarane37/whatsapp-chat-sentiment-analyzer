@@ -6,3 +6,5 @@ wordcloud
 pandas
 numpy
 emoji
+nltk
+squarify
