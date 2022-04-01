@@ -1,4 +1,7 @@
-#Deployment:-
+"""
+Created on Fri April 01  2022
+@author: Subodh Varane
+"""
 
 #Importing libraries:  
 import streamlit as st
@@ -15,7 +18,7 @@ st.markdown("## Hey what's up? This is streamlit app which analyzes user's indiv
 "## To upload a file go through some steps below : "
 st.text("1. Open the individual or group chat.")
 st.text("2. Tap More options > More > Export chat.")
-st.text("3. Choose whether to export with media or without media.")
+st.text("3. Choose to export without media.")
 st.image("whatsapp_exportchat.jpg",  width=500)
 
 
