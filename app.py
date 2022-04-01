@@ -14,11 +14,11 @@ import seaborn as sns
 #Uploading header files:
 st.title("WhatsApp Chat Sentiment Analyzer")
 st.image("WhatsAppimg.jpg", width=400)
-st.markdown("## Hey what's up? This is streamlit app which analyzes user's individual as well as group chats and displays it in form of visualizations. ")
+st.markdown("## Hey what's up? This is streamlit app which analyzes group chats, individual chats as well as particular individual's activity in a group chat and displays it in form of visualizations. ")
 "## To upload a file go through some steps below : "
 st.text("1. Open the individual or group chat.")
 st.text("2. Tap More options > More > Export chat.")
-st.text("3. Choose to export without media.")
+st.text("3. Select to export without Media and download text file (.txt)")
 st.image("whatsapp_exportchat.jpg",  width=500)
 
 
@@ -38,7 +38,7 @@ if uploaded_file is not None:
     user_list.sort()                        #sorting userlist
     user_list.insert(0,"Overall")           #group analysis at 0 position 
 
-    selected_user=st.sidebar.selectbox("Show analysis wrt",user_list)
+    selected_user=st.sidebar.selectbox("Click on Show Analysis ",user_list)
 
 # Implemening stats :
 
@@ -80,7 +80,7 @@ if uploaded_file is not None:
                 st.pyplot(fig)
 
             with col2:
-                st.title("(List of Users)")
+                st.title("(Chats of Users)")
                 st.dataframe(new_df)    
 
 
@@ -113,6 +113,7 @@ if uploaded_file is not None:
         ax.barh(most_common_df[0],most_common_df[1], color= 'grey')
         plt.xticks(rotation='vertical')
         st.title('Most Common Words :')
+        st.text("Note: 'media ommitted' represents media files shared")
         st.pyplot(fig)
 
 
@@ -133,7 +134,7 @@ if uploaded_file is not None:
         col1,col2 = st.columns(2)
 
         with col1:
-            st.title("(No. of emojis)")
+            st.title("Most Used Emojis")
             st.dataframe(emoji_df)
         with col2:
             st.title("(Pie-Chart)")
@@ -147,16 +148,18 @@ if uploaded_file is not None:
 # User activity map:
 # timeline graph:
 
-        st.title("User Activity Map ")
+        st.title("User Activity Map :")
         if selected_user == 'Overall':
-            st.title("Monthly Timeline :")
+            st.title("(Monthly Timeline)")
+            st.text("It shows maximum active of user wrt months")
             timeline = helper.monthly_timeline(selected_user, df)
             fig, ax = plt.subplots()
             ax.plot(timeline['time'], timeline['message'], color='purple')
             plt.xticks(rotation='vertical')
             st.pyplot(fig)
 
-            st.title("Daily Timeline :")
+            st.title("(Daily Timeline)")
+            st.text("It shows maximum active of user wrt dates")
             daily_timeline = helper.daily_timeline(selected_user, df)
             fig, ax = plt.subplots()
             ax.plot(daily_timeline['only_date'], daily_timeline['message'], color='brown')
@@ -166,7 +169,9 @@ if uploaded_file is not None:
 
 #Weekly activity map(heatmap):
 
-        st.title("Weekly Activity Map ")
+        st.title("Weekly Activity Map:")
+        st.text("This feature shows user's activity time wrt to day")
+        st.text("(> Light Shades = High Active Period    > Dark Shades = Less Active Period)")       
         user_heatmap = helper.activity_heatmap(selected_user, df)
         fig, ax = plt.subplots()
         ax = sns.heatmap(user_heatmap)
@@ -178,6 +183,7 @@ if uploaded_file is not None:
 # Sentimental Analysis(treemap):
 
         st.title("Sentiment Analysis :")
+        st.text("This analysis shows user's emotion based on words in the messages")
         sentiment_df = helper.sentiment_analysis(selected_user, df)
         col1,col2 = st.columns(2)
 
@@ -186,6 +192,7 @@ if uploaded_file is not None:
             st.dataframe(sentiment_df)
         with col2:
             st.title("(TreeMap)")
+            st.text("(> Neutral= Blue  > Positive= Green  > Negative= Red)")
             fig, ax= plt.subplots()
             squarify.plot(sizes=sentiment_df.values, label=["NEUTRAL","POSITIVE", "NEGATIVE"],pad=3,color=["blue","green","red"], alpha=0.5,edgecolor="black",text_kwargs={'fontsize':15})
             fig.set_size_inches(15, 10.5)
@@ -200,7 +207,7 @@ if uploaded_file is not None:
             st.title("Thank You :)") 
 
         with col2:
-            st.title("-By Subodh Ajay Varane")
+            st.title("Created By Subodh Ajay Varane")
             testImage = img.imread('mypic.png')
             plt.axis('off')
             plt.imshow(testImage)
