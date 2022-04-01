@@ -8,10 +8,20 @@ import matplotlib.image as img
 import squarify
 import seaborn as sns
 
+#Uploading header files:
+st.title("WhatsApp Chat Sentiment Analyzer")
+st.image("WhatsAppimg.jpg", width=400)
+st.markdown("## Hey what's up? This is streamlit app which analyzes user's individual as well as group chats and displays it in form of visualizations. ")
+"## To upload a file go through some steps below : "
+st.text("1. Open the individual or group chat.")
+st.text("2. Tap More options > More > Export chat.")
+st.text("3. Choose whether to export with media or without media.")
+st.image("whatsapp_exportchat.jpg",  width=500)
+
 
 #Uploading files into sidebar:
-st.sidebar.title("Whatsapp Chat Sentiment Analyzer")
-uploaded_file = st.sidebar.file_uploader("Choose a file")
+st.sidebar.title("Welcome !")
+uploaded_file = st.sidebar.file_uploader("Upload a file")
 
 if uploaded_file is not None:
     bytes_data = uploaded_file.getvalue()           
