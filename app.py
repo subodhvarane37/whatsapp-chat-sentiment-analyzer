@@ -14,6 +14,7 @@ import seaborn as sns
 #Uploading header files:
 st.title("WhatsApp Chat Sentiment Analyzer")
 st.image("WhatsAppimg.jpg", width=400)
+st.text("Do Read the Info - ")
 st.markdown("## Hey what's up? This is streamlit app which analyzes group chats, individual chats as well as particular individual's activity in a group chat and displays it in form of visualizations. ")
 "## To upload a file go through some steps below : "
 st.text("1. Open the individual or group chat.")
@@ -151,7 +152,7 @@ if uploaded_file is not None:
         st.title("User Activity Map :")
         if selected_user == 'Overall':
             st.title("(Monthly Timeline)")
-            st.text("It shows maximum active of user wrt months")
+            st.text("It shows maximum active of user wrt months.")
             timeline = helper.monthly_timeline(selected_user, df)
             fig, ax = plt.subplots()
             ax.plot(timeline['time'], timeline['message'], color='purple')
@@ -159,7 +160,7 @@ if uploaded_file is not None:
             st.pyplot(fig)
 
             st.title("(Daily Timeline)")
-            st.text("It shows maximum active of user wrt dates")
+            st.text("It shows maximum active of user wrt dates.")
             daily_timeline = helper.daily_timeline(selected_user, df)
             fig, ax = plt.subplots()
             ax.plot(daily_timeline['only_date'], daily_timeline['message'], color='brown')
@@ -170,7 +171,7 @@ if uploaded_file is not None:
 #Weekly activity map(heatmap):
 
         st.title("Weekly Activity Map:")
-        st.text("This feature shows user's activity time wrt to day")
+        st.text("This feature shows user's activity time wrt to day.")
         st.text("(> Light Shades = High Active Period    > Dark Shades = Less Active Period)")       
         user_heatmap = helper.activity_heatmap(selected_user, df)
         fig, ax = plt.subplots()
@@ -183,7 +184,7 @@ if uploaded_file is not None:
 # Sentimental Analysis(treemap):
 
         st.title("Sentiment Analysis :")
-        st.text("This analysis shows user's emotion based on words in the messages")
+        st.text("This analysis shows user's emotion based on words in the messages.")
         sentiment_df = helper.sentiment_analysis(selected_user, df)
         col1,col2 = st.columns(2)
 
